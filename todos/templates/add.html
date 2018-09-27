@@ -1,0 +1,30 @@
+{% include 'partials/header.html' %}
+
+<div class='card card-list'>
+        <form action="{% url 'add' %}" method="post">
+                {% csrf_token %}
+                <div class='form-group'>
+                    <label for="title">Task</label>
+                    <input placeholder="Enter task name" class="form-control" autocomplete="off" type="text" name="title" id="title" required />
+                </div>
+                <div class='form-group'>
+                    <label for="text">Task Details</label>
+                    <textarea placeholder="Enter the details for your task." class="form-control" name="text" id="text" required></textarea>
+                </div>
+
+                <div class='form-group'>
+                    <label>
+                        <input name='completed' type="checkbox">
+                        <span class="checkmark"></span>
+                        <span>Completed?</span>
+                    </label>                    
+                </div>
+
+                <input class='btn btn-primary' type="submit" value="Submit" />
+            </form>
+            <br>
+            <a href="/">Cancel</a>
+</div>
+
+
+{% include 'partials/footer.html' %}

@@ -1,0 +1,27 @@
+ {% include 'partials/header.html' %}
+<ul>
+    {% for todo in todos %}  
+            <li class='card card-list bg-light'>
+                <span class='card-title'>
+                    <a class='card-title btn' href="/todos/details/{{todo.id}}">{{todo.title}}</a>
+                </span>
+                <label class="card-subtitle container">
+                    <span checkarea>
+                        {% if todo.completed %}
+                        <input disabled type="checkbox" checked>
+                        <span class="checkmark"></span>
+                        <span>Completed</span>
+                        {% else %}
+                        <input disabled type="checkbox">
+                        <span class="checkmark"></span>
+                        <span>Incompleted</span>
+                        {% endif %}
+                    </span>
+                </label>
+                <span class='card-body'>
+                    {{todo.text}}
+                </span>
+            </li>
+    {% endfor %}
+</ul>
+{% include 'partials/footer.html' %}

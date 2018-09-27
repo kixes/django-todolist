@@ -1,0 +1,38 @@
+{% include 'partials/header.html' %}
+<div class='card card-list'>
+    <h3 class='card-title'>{{todo.id}}: {{todo.title}}</h3>
+    <span class='card-subtitle'>
+        Created on {{todo.created_at}}
+        <label class="card-subtitle container">
+                {% if todo.completed %}
+                <input disabled type="checkbox" checked>
+                <span class="checkmark"></span>
+                <span>Completed</span>
+                {% else %}
+                <input disabled type="checkbox">
+                <span class="checkmark"></span>
+                <span>Incompleted</span>
+                {% endif %}
+        </label>
+    </span>
+    <div class='card-body'>
+        <form class='btn' action="{% url 'mark_complete' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{todo.id}}">
+            <input type="hidden" name="value" value="True">
+            <input type="submit" value="Mark Complete" class='btn btn-outline-primary btn-sm' />
+        </form>
+        <form class='btn' action="{% url 'mark_complete' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{todo.id}}">
+            <input type="hidden" name="value" value="False">
+            <input type="submit" value="Mark Incomplete" class='btn btn-outline-danger btn-sm' />
+        </form>
+
+        <pre class='card-text'>{{todo.text}}</pre>
+        <a class='btn' href="/todos"><< Go Back</a>
+    </div>
+
+</div>
+
+{% include 'partials/footer.html' %}
